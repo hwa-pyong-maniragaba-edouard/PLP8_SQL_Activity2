@@ -26,3 +26,18 @@ CREATE TABLE bookings (
         REFERENCES passengers(passenger_id)
         ON DELETE CASCADE
 );
+
+insert into passengers (name, current_location, destination, travel_date) values
+('Riah', 'Kigali', 'Lagos', '2024-07-15'),
+('Neema', 'Kigali', 'Nairobi', '2024-08-20'),
+('Bill', 'Kigali', 'South Africa', '2024-09-10');
+
+select * from passengers;
+
+
+insert into bookings (booking_id, passenger_id, class_tier, seat_preference, lounge_pass_code, suite_number, chauffeur_service) values
+(1, 1, 'Economy', 'Window', NULL, NULL, FALSE),
+(2, 2, 'Business', 'Aisle', 'LP12345', NULL, TRUE),
+(3, 3, 'First', NULL, 'LP67890', 'S101', TRUE);
+
+select * from bookings;
