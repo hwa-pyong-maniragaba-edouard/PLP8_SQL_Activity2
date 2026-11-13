@@ -1,0 +1,2 @@
+CREATE DATABASE airline_db
+    DEFAULT CHARACTER SET = 'utf8mb4';
