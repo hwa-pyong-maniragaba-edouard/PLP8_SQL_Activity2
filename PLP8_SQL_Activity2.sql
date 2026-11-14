@@ -43,7 +43,7 @@ insert into bookings (booking_id, passenger_id, class_tier, seat_preference, lou
 select * from bookings;
 
 
- 
+
 USE airline_db;
 
 SELECT
@@ -59,3 +59,18 @@ INNER JOIN bookings b
     ON p.passenger_id = b.passenger_id
 WHERE b.class_tier IN ('Business', 'First')
 ORDER BY b.class_tier, p.name;
+
+
+-- Join
+SELECT
+    p.name,
+    p.destination,
+    b.class_tier,
+    CASE b.class_tier
+        WHEN 'Economy'  THEN CONCAT('Seat: ', b.seat_preference)
+        WHEN 'Business' THEN CONCAT('Lounge pass: ', b.lounge_pass_code)
+        WHEN 'First'    THEN CONCAT('Suite: ', b.suite_number, ', Chauffeur: ',
+                                    IF(b.chauffeur_service, 'Yes', 'No'))
+    END AS class_perks
+FROM passengers p
+INNER JOIN bookings b ON p.passenger_id = b.passenger_id;
