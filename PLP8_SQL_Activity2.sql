@@ -41,3 +41,21 @@ insert into bookings (booking_id, passenger_id, class_tier, seat_preference, lou
 (3, 3, 'First', NULL, 'LP67890', 'S101', TRUE);
 
 select * from bookings;
+
+
+ 
+USE airline_db;
+
+SELECT
+    p.passenger_id,
+    p.name,
+    p.current_location,
+    p.destination,
+    p.travel_date,
+    b.booking_id,
+    b.class_tier
+FROM passengers p
+INNER JOIN bookings b
+    ON p.passenger_id = b.passenger_id
+WHERE b.class_tier IN ('Business', 'First')
+ORDER BY b.class_tier, p.name;
