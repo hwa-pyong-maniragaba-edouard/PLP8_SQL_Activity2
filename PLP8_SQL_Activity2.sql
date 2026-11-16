@@ -76,7 +76,7 @@ SELECT
     END AS class_perks
 FROM passengers p
 INNER JOIN bookings b ON p.passenger_id = b.passenger_id;
--- Member 6: Update and Delete
+-- Update and Delete queries
 USE airline_db;
 
 UPDATE bookings 
