@@ -1,3 +1,5 @@
+nano PLP8_SQL_Activity2.sql
+
 CREATE DATABASE airline_db
     DEFAULT CHARACTER SET = 'utf8mb4';
 
@@ -74,3 +76,19 @@ SELECT
     END AS class_perks
 FROM passengers p
 INNER JOIN bookings b ON p.passenger_id = b.passenger_id;
+-- Member 6: Update and Delete
+USE airline_db;
+
+UPDATE bookings 
+SET seat_preference = 'Extra Legroom' 
+WHERE booking_id = 1;
+
+UPDATE passengers 
+SET destination = 'Johannesburg' 
+WHERE passenger_id = 3;
+
+DELETE FROM bookings 
+WHERE booking_id = 1;
+
+SELECT * FROM passengers;
+SELECT * FROM bookings;
