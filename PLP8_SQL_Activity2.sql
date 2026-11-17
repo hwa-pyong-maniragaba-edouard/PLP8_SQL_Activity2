@@ -1,3 +1,5 @@
+DROP DATABASE IF EXISTS airline_db;
+
 CREATE DATABASE airline_db
     DEFAULT CHARACTER SET = 'utf8mb4';
 
@@ -43,7 +45,7 @@ insert into bookings (booking_id, passenger_id, class_tier, seat_preference, lou
 select * from bookings;
 
 
-
+-- Read
 USE airline_db;
 
 SELECT
@@ -74,3 +76,23 @@ SELECT
     END AS class_perks
 FROM passengers p
 INNER JOIN bookings b ON p.passenger_id = b.passenger_id;
+
+
+-- Update
+USE airline_db;
+
+UPDATE bookings
+SET seat_preference = 'Extra Legroom'
+WHERE passenger_id = 1;
+
+UPDATE passengers
+SET destination = 'Johannesburg'
+WHERE passenger_id = 3;
+
+
+-- Delete
+DELETE FROM bookings
+WHERE passenger_id = 3;
+
+SELECT * FROM passengers;
+SELECT * FROM bookings;
