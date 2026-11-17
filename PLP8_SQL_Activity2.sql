@@ -28,10 +28,10 @@ CREATE TABLE bookings (
 );
 
 
-insert into passengers (name, current_location, destination, travel_date) values
-('Riah', 'Kigali', 'Lagos', '2024-07-15'),
-('Neema', 'Kigali', 'Nairobi', '2024-08-20'),
-('Bill', 'Kigali', 'South Africa', '2024-09-10');
+insert into passengers (passenger_id, name, current_location, destination, travel_date) values
+(1, 'Riah', 'Kigali', 'Lagos', '2024-07-15'),
+(2, 'Neema', 'Kigali', 'Nairobi', '2024-08-20'),
+(3, 'Bill', 'Kigali', 'South Africa', '2024-09-10');
 
 select * from passengers;
 
