@@ -1,3 +1,5 @@
+DROP DATABASE IF EXISTS airline_db;
+
 CREATE DATABASE airline_db
     DEFAULT CHARACTER SET = 'utf8mb4';
 
@@ -27,6 +29,7 @@ CREATE TABLE bookings (
         ON DELETE CASCADE
 );
 
+<<<<<<< HEAD
 
 insert into passengers (passenger_id, name, current_location, destination, travel_date) values
 (1, 'Riah', 'Kigali', 'Lagos', '2024-07-15'),
@@ -35,6 +38,16 @@ insert into passengers (passenger_id, name, current_location, destination, trave
 
 select * from passengers;
 
+=======
+insert into passengers (name, current_location, destination, travel_date) values
+('Riah', 'Kigali', 'Lagos', '2024-07-15'),
+('Neema', 'Kigali', 'Nairobi', '2024-08-20'),
+('Bill', 'Kigali', 'South Africa', '2024-09-10');
+
+select * from passengers;
+
+
+>>>>>>> deea19e61af8007e3228215661fbd2c2bbc2fa7f
 insert into bookings (booking_id, passenger_id, class_tier, seat_preference, lounge_pass_code, suite_number, chauffeur_service) values
 (1, 1, 'Economy', 'Window', NULL, NULL, FALSE),
 (2, 2, 'Business', 'Aisle', 'LP12345', NULL, TRUE),
@@ -43,3 +56,57 @@ insert into bookings (booking_id, passenger_id, class_tier, seat_preference, lou
 select * from bookings;
 
 
+<<<<<<< HEAD
+=======
+-- Read
+USE airline_db;
+
+SELECT
+    p.passenger_id,
+    p.name,
+    p.current_location,
+    p.destination,
+    p.travel_date,
+    b.booking_id,
+    b.class_tier
+FROM passengers p
+INNER JOIN bookings b
+    ON p.passenger_id = b.passenger_id
+WHERE b.class_tier IN ('Business', 'First')
+ORDER BY b.class_tier, p.name;
+
+
+-- Join
+SELECT
+    p.name,
+    p.destination,
+    b.class_tier,
+    CASE b.class_tier
+        WHEN 'Economy'  THEN CONCAT('Seat: ', b.seat_preference)
+        WHEN 'Business' THEN CONCAT('Lounge pass: ', b.lounge_pass_code)
+        WHEN 'First'    THEN CONCAT('Suite: ', b.suite_number, ', Chauffeur: ',
+                                    IF(b.chauffeur_service, 'Yes', 'No'))
+    END AS class_perks
+FROM passengers p
+INNER JOIN bookings b ON p.passenger_id = b.passenger_id;
+
+
+-- Update
+USE airline_db;
+
+UPDATE bookings
+SET seat_preference = 'Extra Legroom'
+WHERE passenger_id = 1;
+
+UPDATE passengers
+SET destination = 'Johannesburg'
+WHERE passenger_id = 3;
+
+
+-- Delete
+DELETE FROM bookings
+WHERE passenger_id = 3;
+
+SELECT * FROM passengers;
+SELECT * FROM bookings;
+>>>>>>> deea19e61af8007e3228215661fbd2c2bbc2fa7f
